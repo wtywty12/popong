@@ -37,21 +37,39 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-
-    },
-
-    start () {
         //动态加载方格
         var self = this;
-        cc.loader.loadRes("GameScene/gz_1", cc.SpriteFrame, function(err, sf){
+        cc.loader.loadRes("GameScene/gz_1", cc.SpriteFrame, function(err, spriteFrame){
+            self.panel_root.SpriteFrame = spriteFrame;
+            // var node = new cc.Node("Sprite");
+            // var sp = node.addComponent(cc.Sprite);
+            // sp.SpriteFrame = sf;
+            // self.panel_root.addChild(node);
+            // // node.parent = scene;
+            // node.setPosition(100, 100);
+        });
+
+        cc.loader.loadRes("GameScene/gz_2", cc.SpriteFrame, function(err, sf){
             var scene = cc.director.getScene();
             var node = new cc.Node("Sprite");
             var sp = node.addComponent(cc.Sprite);
             sp.SpriteFrame = sf;
-            self.panel_root.addChild(node);
-            // node.parent = scene;
-            node.setPosition(100, 100);
+            node.parent = scene;
+            node.setPosition(200, 300);
         });
+
+        cc.loader.loadRes("GameScene/gz_3", cc.SpriteFrame, function(err, sf){
+            var scene = cc.director.getScene();
+            var node = new cc.Node("Sprite");
+            var sp = node.addComponent(cc.Sprite);
+            sp.SpriteFrame = sf;
+            scene.addChild(node);
+            node.setPosition(300, 500);
+        });
+    },
+
+    start () {
+        
     },
 
     // update (dt) {},
